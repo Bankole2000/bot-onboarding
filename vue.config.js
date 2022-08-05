@@ -6,7 +6,8 @@ module.exports = {
       return args;
     });
   },
-  publicPath: process.env.NODE_ENV === "production" ? "/bot-onboarding" : "/"
+  // publicPath: process.env.NODE_ENV === "production" ? "/bot-onboarding" : "/"
+  publicPath: process.env.NODE_ENV === "production" ? "/" : "/"
   // publicPath: '',
   // baseUrl: '/projects/vue/webpieces/dist/',
 };
