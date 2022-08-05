@@ -1,5 +1,5 @@
 const env = {
-  baseUrl: 'http://178.128.36.157',
+  baseUrl: 'https://178.128.36.157',
 }
 
 export {

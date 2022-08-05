@@ -3,6 +3,10 @@ import { env } from "../utils/config";
 
 const endpoint = `${env.baseUrl}/api/v1/chat`;
 
+// const agent = new https.Agent({  
+//   rejectUnauthorized: false
+//  });
+
 export default {
   getQuestions: () => {
     return axios.get(`${endpoint}/chatbot/onboarding/questions`,

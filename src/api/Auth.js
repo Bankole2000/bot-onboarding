@@ -2,6 +2,9 @@ import axios from "axios";
 import { env } from "../utils/config";
 
 const endpoint = `${env.baseUrl}/api/v1/auth`;
+// const agent = new https.Agent({  
+//   rejectUnauthorized: false
+//  });
 
 export default {
   login: (email, password) => {
