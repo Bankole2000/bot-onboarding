@@ -16,11 +16,13 @@
             label="Email"
             type="text"
             v-model="email"
+            @keypress.enter="login"
             :readonly="loading"
           ></v-text-field>
           <v-text-field
             label="Password"
             type="password"
+            @keypress.enter="login"
             :readonly="loading"
             v-model="password"
           ></v-text-field>

@@ -4,9 +4,10 @@
     :value="toast.show"
     :bottom="true"
     :left="$vuetify.breakpoint.mdAndUp"
-    :centered="$vuetify.breakpoint.smAndDown"
     :timeout="toast.timeout"
   >
+    <!-- :top="$vuetify.breakpoint.smAndDown" -->
+    <!-- :centered="$vuetify.breakpoint.smAndDown" -->
     <span :class="`${toast.sclass}--text text-capitalize font-weight-bold`"
       >{{ toast.sclass }}: &nbsp;</span
     >

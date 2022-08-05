@@ -1,11 +1,14 @@
 <template>
-  <div class="questions-page mt-16">
+  <div
+    class="questions-page"
+    :class="$vuetify.breakpoint.mdAndUp ? ' mt-16' : 'mt-4'"
+  >
     <v-container>
       <v-row>
         <v-col cols="12">
           <v-container>
             <v-row>
-              <v-col cols="11" md="6" offset-md="3">
+              <v-col cols="11" md="8" offset-md="2">
                 <p class="mb-0 ml-10">
                   Please answer <strong>at least 5</strong> questions
                 </p>
@@ -69,7 +72,7 @@ export default {
       this.showToast({
         message: "Answer Saved",
         show: true,
-        timeout: 3000,
+        timeout: 1500,
         sclass: "success",
       });
       if (this.activeQuestion === this.questions.length - 1) {

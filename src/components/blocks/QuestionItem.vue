@@ -2,8 +2,8 @@
   <div class="question-item">
     <v-container>
       <v-row>
-        <v-col cols="11" md="6" offset-md="3">
-          <div class="d-flex align-start">
+        <v-col cols="11" md="8" offset-md="2">
+          <v-card elevation="0" class="d-flex align-start">
             <div class="primary--text mt-11 mr-2">
               <div class="d-flex align-center">
                 <p class="mb-0">{{ index + 1 }}</p>
@@ -28,15 +28,16 @@
                 </v-tooltip>
               </div>
             </div>
-            <div class="flex-grow">
+            <div style="min-width: 95%">
               <p class="caption grey--text">
                 Question {{ index + 1 }} of {{ total }}
               </p>
               <p class="display-1">{{ question.question }}</p>
               <v-textarea
-                rows="2"
+                rows="1"
                 placeholder="Type your answer here"
                 label="Your answer"
+                auto-grow
                 :disabled="loading"
                 style="font-size: 1.25rem"
                 autofocus
@@ -90,6 +91,7 @@
                   :disabled="loading || recording"
                   rounded
                   :loading="loading"
+                  @click="submitAnswer"
                   class="primary white--text py-2 text-capitalize mr-4"
                   >Okay <v-icon right>mdi-check</v-icon></v-btn
                 >
@@ -97,7 +99,7 @@
                 <v-icon size="28">mdi-keyboard-return</v-icon>
               </div>
             </div>
-          </div>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -171,6 +173,9 @@ export default {
     },
     async submitAnswer() {
       // const { answer } = this.$data;
+      if (this.loading || this.recording) {
+        return;
+      }
       this.loading = true;
       // console.log({ answer: this.answer });
       const result = await this.sendAnswer({
