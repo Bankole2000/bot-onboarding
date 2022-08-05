@@ -4,9 +4,29 @@
       <v-row>
         <v-col cols="11" md="6" offset-md="3">
           <div class="d-flex align-start">
-            <div class="d-flex align-center primary--text mt-11 mr-2">
-              <p class="mb-0">{{ index + 1 }}</p>
-              <v-icon color="primary">mdi-arrow-right</v-icon>
+            <div class="primary--text mt-11 mr-2">
+              <div class="d-flex align-center">
+                <p class="mb-0">{{ index + 1 }}</p>
+                <v-icon color="primary">mdi-arrow-right</v-icon>
+              </div>
+              <div>
+                <v-tooltip top>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      v-if="index > 0"
+                      @click="$emit('back')"
+                      color="secondary"
+                      elevation="1"
+                      class="mt-8"
+                      icon
+                      v-bind="attrs"
+                      v-on="on"
+                      ><v-icon>mdi-arrow-left</v-icon></v-btn
+                    >
+                  </template>
+                  <span>Previous Question</span>
+                </v-tooltip>
+              </div>
             </div>
             <div class="flex-grow">
               <p class="caption grey--text">
@@ -17,7 +37,9 @@
                 rows="2"
                 placeholder="Type your answer here"
                 label="Your answer"
+                :disabled="loading"
                 style="font-size: 1.25rem"
+                autofocus
                 v-model="answer"
               ></v-textarea>
               <v-scroll-x-transition leave-absolute>
@@ -150,7 +172,7 @@ export default {
     async submitAnswer() {
       // const { answer } = this.$data;
       this.loading = true;
-      console.log({ answer: this.answer });
+      // console.log({ answer: this.answer });
       const result = await this.sendAnswer({
         questionId: this.question.questionId,
         answer: this.answer,

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import QuestionsPage from '../views/QuestionsPage.vue'
+import CompletePage from '../views/SubmissionComplete.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/questions',
     name: 'Questions',
     component: QuestionsPage,
+  },
+  {
+    path: '/complete',
+    name: 'Complete',
+    component: CompletePage,
   },
   {
     path: '/about',

@@ -5,7 +5,7 @@ export default {
     dispatch("ui/showGlobalLoader", { show: true, message: "Loading..." }, { root: true });
     try {
       const { data: result } = await API.Questions.getQuestions();
-      console.log({ result });
+      // console.log({ result });
       commit('setQuestions', result.data);
       return result;
     } catch (error) {
@@ -20,7 +20,7 @@ export default {
   async answerQuestion({ commit }, { questionId, answer }) {
     try {
       const { data: result } = await API.Questions.sendAnswer(questionId, answer);
-      console.log({ result });
+      // console.log({ result });
       commit('updateQuestionAnswer', result.data);
       return result;
     } catch (error) {

@@ -40,6 +40,7 @@ export default {
     ...mapActions({
       showGlobalLoader: "ui/showGlobalLoader",
       showToast: "ui/showToast",
+      setAuthData: "users/setAuthData",
     }),
     showModal(ref, value) {
       this.$refs[ref].show(value);
@@ -50,14 +51,21 @@ export default {
     },
     async authenticateWithToken() {
       this.showGlobalLoader({ show: true, message: "Loading..." });
-      console.log({ query: this.$route.query });
+      // console.log({ query: this.$route.query });
       const { token } = this.$route.query;
-      console.log({ token });
+      // console.log({ token });
       try {
         const { data: result } = await API.Auth.validateToken(token);
         if (result.success) {
           // Update User and Token in vuex;
-          console.log({ data: result.data });
+          // console.log({ data: result.data });
+          await this.setAuthData({ user: result.data, token });
+          this.showToast({
+            show: true,
+            message: "Authentication Successful",
+            sclass: "success",
+            timeout: 3000,
+          });
         }
       } catch (error) {
         console.log({ error });

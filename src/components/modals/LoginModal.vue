@@ -71,7 +71,7 @@ export default {
     async login() {
       this.loading = true;
       const { email, password } = this.$data;
-      console.log({ email, password });
+      // console.log({ email, password });
       if (!email || !password) {
         this.showToast({
           show: true,

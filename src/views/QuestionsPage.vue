@@ -20,6 +20,7 @@
                 :total="questions.length"
                 :active="activeQuestion === i"
                 :givenAnswer="userAnswer(q.questionId)"
+                @back="activeQuestion--"
                 @questionAnswered="questionAnswered"
                 @answerError="answerError"
               />
@@ -71,6 +72,10 @@ export default {
         timeout: 3000,
         sclass: "success",
       });
+      if (this.activeQuestion === this.questions.length - 1) {
+        this.$router.push({ name: "Complete" });
+        return;
+      }
       this.activeQuestion++;
     },
   },

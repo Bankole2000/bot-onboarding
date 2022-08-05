@@ -77,7 +77,6 @@ export default {
     async beginQuestions() {
       console.log("Get Questions");
       const result = await this.getQuestions();
-      console.log({ result });
       if (result.success) {
         this.$router.push({ name: "Questions" }).catch((e) => {
           console.log({ e });

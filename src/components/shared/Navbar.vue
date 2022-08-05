@@ -79,9 +79,27 @@
             </div>
             <div v-else class="d-flex align-center">
               <div style="z-index: 999" class="mr-4" v-if="user">
-                <p class="mb-0 primary--text text-right font-weight-bold">
-                  @{{ user.username }}
-                </p>
+                <div class="d-flex align-center">
+                  <v-chip
+                    @click="
+                      () => {
+                        logout().then(() => {
+                          $router.push({ name: 'Home' });
+                        });
+                      }
+                    "
+                    class="mx-2"
+                    color="error"
+                    x-small
+                    outlined
+                  >
+                    <v-icon left size="12">mdi-logout-variant</v-icon>
+                    Logout
+                  </v-chip>
+                  <p class="mb-0 primary--text text-right font-weight-bold">
+                    @{{ user.username }}
+                  </p>
+                </div>
                 <p class="mb-0 grey--text">{{ user.email }}</p>
               </div>
               <v-avatar size="50" color="primary" v-if="user">
@@ -141,7 +159,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { env } from "@/utils/config";
 
 export default {
@@ -154,6 +172,11 @@ export default {
     ...mapGetters({
       user: "users/user",
       isLoggedIn: "users/isLoggedIn",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      logout: "users/logout",
     }),
   },
 };
